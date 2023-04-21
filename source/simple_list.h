@@ -83,6 +83,17 @@ void insert_sorted_to_simple_list(simple_list_t *list, void *element, simple_lis
 simple_list_iterator_t *simple_list_begin(simple_list_t *list);
 
 /**
+ * @brief Get beginning of the list
+ * @param[in] list pointer to the simple list
+ * @param[in] reference_element pointer to reference element for comparison
+ * @param[in] comparator pointer to comparator function
+ * @return NULL if no filtered position was found or pointers were invalid
+ * @return pointer to first 'reference element equal' position
+*/
+simple_list_iterator_t *simple_list_begin_filtered(simple_list_t *list, const void *reference_element,
+                                                   simple_list_element_comparator_t comparator);
+
+/**
  * @brief Get next position in the list
  * @param[in] iterator pointer current position
  * @return NULL if this was the last position

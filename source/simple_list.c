@@ -120,6 +120,22 @@ simple_list_iterator_t *simple_list_begin(simple_list_t *list)
     return list->first;
 }
 
+
+simple_list_iterator_t *simple_list_begin_filtered(simple_list_t *list, const void *reference_element,
+                                                   simple_list_element_comparator_t comparator)
+{
+    if (!list || !comparator) {
+        return NULL;
+    }
+    simple_list_iterator_t *iterator = NULL;
+    for (iterator = simple_list_begin(list); iterator; iterator = simple_list_next(iterator)) {
+        if (comparator(iterator->value, reference_element) == 0) {
+            break;
+        }
+    }
+    return iterator;
+}
+
 simple_list_iterator_t *simple_list_next(simple_list_iterator_t *iterator)
 {
     if (!iterator) {
@@ -131,6 +147,9 @@ simple_list_iterator_t *simple_list_next(simple_list_iterator_t *iterator)
 simple_list_iterator_t *simple_list_next_filtered(simple_list_iterator_t *iterator, const void *reference_element,
                                                   simple_list_element_comparator_t comparator)
 {
+    if (!comparator) {
+        return NULL;
+    }
     for (iterator = simple_list_next(iterator); iterator; iterator = simple_list_next(iterator)) {
         if (comparator(iterator->value, reference_element) == 0) {
             break;
