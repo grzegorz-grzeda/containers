@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <setjmp.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include <cmocka.h>
 
@@ -14,7 +15,7 @@
 static int *test_sample = NULL;
 static size_t test_sample_size = 0;
 
-static void simple_list_test(void **state)
+static void simple_test(void **state)
 {
     simple_list_t *list = create_simple_list();
     assert_ptr_not_equal(list, NULL);
@@ -26,6 +27,33 @@ static void simple_list_test(void **state)
     for (simple_list_iterator_t *it = simple_list_begin(list); it; it = simple_list_next(it)) {
         assert_int_equal(*(int *) get_from_simple_list_iterator(it), test_sample[counter++]);
     }
+}
+
+static int element_comparator(const void *current, const void *new_one)
+{
+    int current_int = *(int *) current;
+    int new_int = *(int *) new_one;
+    return (current_int - new_int);
+}
+
+static void sort_on_insert_test(void **state)
+{
+    simple_list_t *list = create_simple_list();
+    assert_ptr_not_equal(list, NULL);
+
+    int *sorted = calloc(test_sample_size, sizeof(test_sample[0]));
+    memcpy(sorted, test_sample, test_sample_size * sizeof(test_sample[0]));
+    qsort(sorted, test_sample_size, sizeof(sorted[0]), element_comparator);
+
+    for (size_t i = 0; i < test_sample_size; i++) {
+        insert_sorted_to_simple_list(list, test_sample + i, element_comparator);
+    }
+
+    size_t counter = 0;
+    for (simple_list_iterator_t *it = simple_list_begin(list); it; it = simple_list_next(it)) {
+        assert_int_equal(*(int *) get_from_simple_list_iterator(it), sorted[counter++]);
+    }
+    free(sorted);
 }
 
 static int setup(void **state)
@@ -45,7 +73,8 @@ int main(int argc, char **argv)
 {
     srand(time(NULL));
     const struct CMUnitTest tests[] = {
-        cmocka_unit_test_setup(simple_list_test, setup),
+        cmocka_unit_test_setup(simple_test, setup),
+        cmocka_unit_test_setup(sort_on_insert_test, setup),
     };
 
     return cmocka_run_group_tests(tests, NULL, NULL);

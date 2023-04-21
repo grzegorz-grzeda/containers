@@ -38,22 +38,78 @@ simple_list_t *create_simple_list(void)
     return calloc(1, sizeof(simple_list_t));
 }
 
+static simple_list_iterator_t *create_new_iterator(void *element)
+{
+    simple_list_iterator_t *it = calloc(1, sizeof(simple_list_iterator_t));
+    if (it) {
+        it->value = element;
+    }
+    return it;
+}
+
+static void insert_first_iterator(simple_list_t *list, simple_list_iterator_t *it)
+{
+    list->first = it;
+    list->last = it;
+}
+
+static void append_iterator(simple_list_t *list, simple_list_iterator_t *it)
+{
+    list->last->next = it;
+    list->last = it;
+}
+
 void append_to_simple_list(simple_list_t *list, void *element)
 {
     if (!list) {
         return;
     }
-    simple_list_iterator_t *it = calloc(1, sizeof(simple_list_iterator_t));
+    simple_list_iterator_t *it = create_new_iterator(element);
     if (!it) {
         return;
     }
-    it->value = element;
     if (list->first) {
-        list->last->next = it;
+        append_iterator(list, it);
     } else {
-        list->first = it;
+        insert_first_iterator(list, it);
     }
-    list->last = it;
+}
+
+static void insert_sorted_second_to_last_into_list(simple_list_t *list, simple_list_iterator_t *it,
+                                                   simple_list_element_comparator_t comparator)
+{
+    simple_list_iterator_t *cursor = list->first;
+    while (cursor->next) {
+        if (comparator(cursor->next->value, it->value) > 0) {
+            it->next = cursor->next;
+            cursor->next = it;
+            return;
+        } else {
+            cursor = cursor->next;
+        }
+    }
+    append_iterator(list, it);
+}
+
+void insert_sorted_to_simple_list(simple_list_t *list, void *element, simple_list_element_comparator_t comparator)
+{
+    if (!list || !comparator) {
+        return;
+    }
+    simple_list_iterator_t *it = create_new_iterator(element);
+    if (!it) {
+        return;
+    }
+    if (!list->first) {
+        insert_first_iterator(list, it);
+        return;
+    }
+    if (comparator(list->first->value, element) > 0) {
+        it->next = list->first;
+        list->first = it;
+        return;
+    }
+    insert_sorted_second_to_last_into_list(list, it, comparator);
 }
 
 simple_list_iterator_t *simple_list_begin(simple_list_t *list)
@@ -70,6 +126,17 @@ simple_list_iterator_t *simple_list_next(simple_list_iterator_t *iterator)
         return NULL;
     }
     return iterator->next;
+}
+
+simple_list_iterator_t *simple_list_next_filtered(simple_list_iterator_t *iterator, const void *reference_element,
+                                                  simple_list_element_comparator_t comparator)
+{
+    for (iterator = simple_list_next(iterator); iterator; iterator = simple_list_next(iterator)) {
+        if (comparator(iterator->value, reference_element) == 0) {
+            break;
+        }
+    }
+    return iterator;
 }
 
 void *get_from_simple_list_iterator(simple_list_iterator_t *iterator)

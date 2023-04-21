@@ -33,8 +33,6 @@ set(UNIT_TESTING OFF CACHE BOOL "CMocka: Build with unit testing" FORCE)
 set(PICKY_DEVELOPER OFF CACHE BOOL "CMocka: Build with picky developer flags" FORCE)
 FetchContent_MakeAvailable(cmocka)
 
-add_executable(test_containers ${CMAKE_CURRENT_SOURCE_DIR}/test_containers.c)
-
-target_link_libraries(test_containers PRIVATE containers cmocka-static)
-
-add_test(NAME test_containers COMMAND test_containers)
+add_executable(test_simple_list ${CMAKE_CURRENT_SOURCE_DIR}/test_simple_list.c)
+target_link_libraries(test_simple_list PRIVATE containers cmocka-static)
+add_test(NAME test_simple_list COMMAND test_simple_list)
