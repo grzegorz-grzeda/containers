@@ -19,6 +19,6 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-include(${CMAKE_CURRENT_SOURCE_DIR}/simple_unit_tests.cmake)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/simple_unit_tests)
 
 add_simple_unit_test(simple_list ${CMAKE_CURRENT_SOURCE_DIR}/test_simple_list.c containers)
