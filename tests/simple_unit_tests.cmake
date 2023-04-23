@@ -19,12 +19,25 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-cmake_minimum_required(VERSION 3.22)
+include(FetchContent)
+FetchContent_Declare(
+  cmocka
+  GIT_REPOSITORY https://git.cryptomilk.org/projects/cmocka.git
+  GIT_TAG        cmocka-1.1.5
+  GIT_SHALLOW    1
+)
+set(WITH_STATIC_LIB ON CACHE BOOL "CMocka: Build with a static library" FORCE)
+set(WITH_CMOCKERY_SUPPORT OFF CACHE BOOL "CMocka: Install a cmockery header" FORCE)
+set(WITH_EXAMPLES OFF CACHE BOOL "CMocka: Build examples" FORCE)
+set(UNIT_TESTING OFF CACHE BOOL "CMocka: Build with unit testing" FORCE)
+set(PICKY_DEVELOPER OFF CACHE BOOL "CMocka: Build with picky developer flags" FORCE)
+FetchContent_MakeAvailable(cmocka)
 
-project(containers LANGUAGES C VERSION 1.1.0)
-add_library(${PROJECT_NAME})
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/source)
+enable_testing()
 
-if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)
-endif()
+function(add_simple_unit_test test_name test_source_file tested_library)
+    set(full_test_name test_${test_name})
+    add_executable(${full_test_name} ${test_source_file})
+    target_link_libraries(${full_test_name} PRIVATE ${tested_library} cmocka-static)
+    add_test(NAME ${full_test_name} COMMAND ${full_test_name})
+endfunction()
