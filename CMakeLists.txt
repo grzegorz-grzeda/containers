@@ -21,7 +21,7 @@
 # SOFTWARE.
 cmake_minimum_required(VERSION 3.22)
 
-project(containers LANGUAGES C VERSION 1.1.0)
+project(containers LANGUAGES C VERSION 1.1.1)
 add_library(${PROJECT_NAME})
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/source)
 
