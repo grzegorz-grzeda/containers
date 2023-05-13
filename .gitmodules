@@ -1,3 +1,0 @@
-[submodule "tests/simple-unit-tests"]
-	path = tests/simple-unit-tests
-	url = git@github.com:grzegorz-grzeda/simple-unit-tests.git

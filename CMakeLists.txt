@@ -26,5 +26,6 @@ add_library(${PROJECT_NAME})
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/source)
 
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/libraries/simple-unit-tests)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)
 endif()
