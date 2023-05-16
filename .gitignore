@@ -4,6 +4,7 @@ build/
 _build/
 documentation
 libraries/
+packages/
 
 # Prerequisites
 *.d
