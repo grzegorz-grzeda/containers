@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "simple_list.h"
+#include "simple-list.h"
 #include <stdlib.h>
 
 typedef struct simple_list_iterator {

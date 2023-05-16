@@ -7,7 +7,7 @@
 #include <time.h>
 #include <cmocka.h>
 
-#include "simple_list.h"
+#include "simple-list.h"
 
 #define MINIMAL_TEST_SAMPLE_SIZE (10)
 #define MAXIMAL_TEST_SAMPLE_SIZE (10000)
