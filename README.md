@@ -1,4 +1,6 @@
 # Containers
+[![CMake](https://github.com/grzegorz-grzeda/containers/actions/workflows/cmake.yml/badge.svg)](https://github.com/grzegorz-grzeda/containers/actions/workflows/cmake.yml)
+
 Simple containers library in C.
 
 ## Run tests

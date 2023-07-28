@@ -20,13 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 cmake_minimum_required(VERSION 3.22)
+enable_testing()
 
 project(containers LANGUAGES C VERSION 1.2.2)
 add_library(${PROJECT_NAME})
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/source)
 
-if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-    enable_testing()
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/packages/simple-unit-tests)
-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)
 endif()
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/source)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)
