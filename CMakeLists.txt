@@ -29,5 +29,5 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     include(${CMAKE_CURRENT_LIST_DIR}/lib/atomic-tests/cmake/atomic-tests.cmake)
 endif()
 
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/source)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)
+add_subdirectory(source)
+add_subdirectory(tests)
