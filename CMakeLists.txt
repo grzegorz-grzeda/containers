@@ -26,7 +26,7 @@ project(containers LANGUAGES C VERSION 1.2.2)
 add_library(${PROJECT_NAME})
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/packages/simple-unit-tests)
+    include(${CMAKE_CURRENT_LIST_DIR}/lib/atomic-tests/cmake/atomic-tests.cmake)
 endif()
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/source)

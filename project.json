@@ -1,7 +1,9 @@
 {
-    "libraries": [],
+    "name": "containers",
+    "libraries": [
+        "atomic-tests"
+    ],
     "packages": [
-        "simple-unit-tests",
         "simple-documentation-library"
     ]
 }
