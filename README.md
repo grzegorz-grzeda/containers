@@ -5,6 +5,9 @@ Simple containers library in C.
 
 This is a [G2EPM](https://github.com/grzegorz-grzeda/g2epm) library.
 
+## Initialize
+Download dependencies by running `g2epm download` in the project root.
+
 ## Run tests
 Just run `./test.sh`.
 
