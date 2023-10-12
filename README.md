@@ -3,6 +3,8 @@
 
 Simple containers library in C.
 
+This is a [G2EPM](https://github.com/grzegorz-grzeda/g2epm) library.
+
 ## Run tests
 Just run `./test.sh`.
 
@@ -27,5 +29,5 @@ directory.
 
 
 # Copyright
-This library was written by Grzegorz Grzęda, and is distributed under MIT Licence. Check the `LICENSE` file for
+This library was written by G2Labs Grzegorz Grzęda, and is distributed under MIT Licence. Check the `LICENSE` file for
 more details.
