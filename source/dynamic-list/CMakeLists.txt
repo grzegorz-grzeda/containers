@@ -20,8 +20,5 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #
-add_subdirectory(simple-list)
-add_subdirectory(simple-dictionary)
-add_subdirectory(dynamic-queue)
-add_subdirectory(dynamic-list)
-add_subdirectory(static-queue)
+target_sources(${PROJECT_NAME} PRIVATE dynamic-list.c)
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

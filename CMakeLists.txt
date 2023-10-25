@@ -23,7 +23,7 @@
 cmake_minimum_required(VERSION 3.22)
 enable_testing()
 
-project(containers LANGUAGES C VERSION 1.2.4)
+project(containers LANGUAGES C VERSION 1.2.5)
 add_library(${PROJECT_NAME})
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
