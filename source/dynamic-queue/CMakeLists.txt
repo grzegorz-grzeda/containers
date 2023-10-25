@@ -20,15 +20,5 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #
-cmake_minimum_required(VERSION 3.22)
-enable_testing()
-
-project(containers LANGUAGES C VERSION 1.2.3)
-add_library(${PROJECT_NAME})
-
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-    include(${CMAKE_CURRENT_LIST_DIR}/lib/atomic-tests/cmake/atomic-tests.cmake)
-endif()
-
-add_subdirectory(source)
-add_subdirectory(tests)
+target_sources(${PROJECT_NAME} PRIVATE dynamic-queue.c)
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

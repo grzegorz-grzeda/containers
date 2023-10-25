@@ -22,3 +22,4 @@
 #
 add_subdirectory(simple-list)
 add_subdirectory(simple-dictionary)
+add_subdirectory(dynamic-queue)

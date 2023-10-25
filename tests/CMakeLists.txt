@@ -20,5 +20,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #
+add_subdirectory(dynamic-queue)
 add_subdirectory(simple-list)
 add_subdirectory(simple-dictionary)
