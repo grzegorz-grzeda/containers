@@ -20,7 +20,5 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #
-add_subdirectory(static-string)
-add_subdirectory(dynamic-queue)
-add_subdirectory(simple-list)
-add_subdirectory(simple-dictionary)
+target_sources(${PROJECT_NAME} PRIVATE static-string.c)
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
