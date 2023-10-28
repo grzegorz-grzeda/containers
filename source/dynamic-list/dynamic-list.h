@@ -34,9 +34,8 @@
 typedef struct dynamic_list dynamic_list_t; /**< @brief Dynamic list absctract
                                                type. Use only as pointer */
 
-typedef struct dynamic_list_iterator
-    dynamic_list_iterator_t; /**< @brief Dynamic list iterator abstract type.
-                                Use only as pointer */
+typedef struct dynamic_list_iterator dynamic_list_iterator_t; /**< @brief Dynamic list iterator abstract type.
+                                                                 Use only as pointer */
 
 /**
  * @brief Create a new dynamic list

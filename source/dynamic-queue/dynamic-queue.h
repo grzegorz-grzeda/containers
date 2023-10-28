@@ -31,9 +31,8 @@
  * @{
  */
 
-typedef struct dynamic_queue
-    dynamic_queue_t; /**< @brief Dynamic queue absctract type. Use only as
-                        pointer */
+typedef struct dynamic_queue dynamic_queue_t; /**< @brief Dynamic queue absctract type. Use only as
+                                                 pointer */
 
 /**
  * @brief Create a new dynamic queue
